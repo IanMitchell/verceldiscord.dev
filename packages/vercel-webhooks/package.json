@@ -1,0 +1,27 @@
+{
+	"name": "vercel-webhooks",
+	"version": "0.0.2",
+	"author": "Ian Mitchell",
+	"description": "Types and helpers for working with Vercel Webhooks",
+	"license": "MIT",
+	"homepage": "https://github.com/ianmitchell/vercel-discord/tree/main/packages/vercel-webhooks",
+	"exports": "./dist/definitions.js",
+	"main": "./dist/definitions.js",
+	"typings": "dist/definitions.d.ts",
+	"type": "module",
+	"scripts": {
+		"clean": "rimraf dist",
+		"build": "tsc",
+		"typecheck": "tsc --noEmit",
+		"prettier": "prettier src/**/*.ts --check",
+		"lint": "eslint ./src/**/*.ts",
+		"prepublish": "npm run clean && npm run build"
+	},
+	"files": [
+		"dist",
+		"src"
+	],
+	"engines": {
+		"node": ">=18"
+	}
+}

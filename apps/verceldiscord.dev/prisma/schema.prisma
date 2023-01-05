@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Connection {
+  id              Int      @id @default(autoincrement())
+  projectId       String   @unique
+  webhookUrl      String
+  configurationId String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  Event Event[]
+
+  @@index([projectId])
+}
+
+model Event {
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now())
+  connectionId Int?
+
+  Connection Connection? @relation(fields: [connectionId], references: [id])
+
+  @@index([connectionId])
+}
